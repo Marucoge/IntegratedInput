@@ -93,10 +93,11 @@ namespace IntegratedInput{
         /// デバッグ用。
         /// </summary>
         private void ChangeButtonColor() {
+            // UnityEngine.Colorクラスの RGBA値は 0~1 の値をとる(それ以上大きいと1になる?) ことに注意。Color32なら0~255だったと思う。
             UnityEngine.Color color = new Color();
             if (this.Status == ButtonState.JustPressed) { color = Color.white; }
-            if (this.Status == ButtonState.BeingPressed) { color = Color.gray; }
-            if (this.Status == ButtonState.BeingReleased) { color = Color.black; }
+            if (this.Status == ButtonState.BeingPressed) { color = new Color(0.18f, 0.18f, 0.18f, 0.6f); }
+            if (this.Status == ButtonState.BeingReleased) { color = new Color(0.18f, 0.18f, 0.18f, 0.2f); }
             ButtonImage.color = color;
         }
     }

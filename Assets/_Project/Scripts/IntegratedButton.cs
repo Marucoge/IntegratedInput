@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 
@@ -9,6 +10,7 @@ namespace IntegratedInput{
 
 
     public class IntegratedButton : MonoBehaviour {
+        [SerializeField] private Image ButtonImage;
         public ButtonState Status { get; private set; }
         public InputType InputType = InputType.AxisInput;
 
@@ -24,6 +26,7 @@ namespace IntegratedInput{
         private void LateUpdate() {
             UpdateGUIInput();
             UpdateAxisInput();
+            ChangeButtonColor(); // デバッグ用。
         }
         
 
@@ -83,6 +86,18 @@ namespace IntegratedInput{
         public void GUIButtonExit() {
             isGUIButtonJustDown = false;
             Status = ButtonState.BeingReleased;
+        }
+
+
+        /// <summary>
+        /// デバッグ用。
+        /// </summary>
+        private void ChangeButtonColor() {
+            UnityEngine.Color color = new Color();
+            if (this.Status == ButtonState.JustPressed) { color = Color.white; }
+            if (this.Status == ButtonState.BeingPressed) { color = Color.gray; }
+            if (this.Status == ButtonState.BeingReleased) { color = Color.black; }
+            ButtonImage.color = color;
         }
     }
 }

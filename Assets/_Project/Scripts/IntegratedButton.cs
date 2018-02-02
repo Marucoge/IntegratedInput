@@ -4,6 +4,10 @@ using System;
 
 
 namespace IntegratedInput{
+    public enum ButtonState { BeingReleased, JustPressed, BeingPressed }
+    public enum InputType { AxisInput, GUIInput }
+
+
     public class IntegratedButton : MonoBehaviour {
         public ButtonState Status { get; private set; }
         public InputType InputType = InputType.AxisInput;
